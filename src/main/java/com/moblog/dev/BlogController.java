@@ -9,7 +9,7 @@ public class BlogController {
     public String blogs() {
         return "blogs";
     }
-    
+
     @GetMapping("/blog")
     public String blog() {
         return "blog";
