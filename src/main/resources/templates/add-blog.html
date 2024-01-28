@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+<head data-th-replace="~{fragment :: head-section}"></head>
+
 <body>
-    Add blog works!
+    <link rel="stylesheet" href="/css/form.css">
+
+    <header data-th-replace="~{fragment :: header-section}"></header>
+
+    <main>
+        <section>
+            <div data-th-replace="~{fragment :: link-section(url='/blogs',name='Back to home')}"></div>
+
+            <div class="form-container">
+                <h2>Create blog</h2>
+                <hr>
+                <form action="/add-blog" method="post">
+                    <div class="form-group">
+                        <label for="input-1">Enter heading</label>
+                        <input type="text" id="input-1" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-2">Enter description</label>
+                        <textarea name="" id="input-2" rows="5" class="form-control">
+                        </textarea>
+                    </div>
+
+                    <input type="submit">
+                </form>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>
