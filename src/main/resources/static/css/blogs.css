@@ -81,3 +81,7 @@ section {
     display: inline-block;
     grid-area: link;
 }
+
+.justify-right {
+    text-align: justify;
+}
