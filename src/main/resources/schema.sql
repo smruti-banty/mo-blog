@@ -1,0 +1,7 @@
+CREATE SCHEMA IF NOT EXISTS `sb_jan`;
+
+CREATE TABLE IF NOT EXISTS `sb_jan`.`moblog`(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	heading TINYTEXT,
+    description MEDIUMTEXT
+);
