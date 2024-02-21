@@ -15,7 +15,7 @@ import com.moblog.dev.service.BlogService;
 public class BlogController {
     private final BlogService blogService;
 
-    public BlogController(@Qualifier("blogServiceClientImpl")BlogService blogService) {
+    public BlogController(@Qualifier("blogServiceClientImpl") BlogService blogService) {
         this.blogService = blogService;
     }
 
@@ -34,13 +34,31 @@ public class BlogController {
     }
 
     @GetMapping("/add-blog")
-    public String addBlog() {
+    public String addBlog(Model model) {
+        model.addAttribute("blog", new Blog());
         return "add-blog";
     }
 
     @PostMapping("/add-blog")
     public String addBlog(@ModelAttribute Blog blog) {
-        blogService.addBlog(blog);
+        if (blog.getId() == 0)
+            blogService.addBlog(blog);
+        else
+            blogService.updateBlog(blog);
         return "redirect:/blogs";
     }
+
+    @GetMapping("/update-blog")
+    public String updateBlog(@RequestParam int id, Model model) {
+        var blog = blogService.getBlog(id);
+        model.addAttribute("blog", blog);
+        return "add-blog";
+    }
+
+    @GetMapping("/delete-blog")
+    public String removeBlog(@RequestParam int id) {
+        blogService.deleteById(id);
+        return "redirect:/blogs";
+    }
+
 }

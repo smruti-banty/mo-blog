@@ -10,4 +10,8 @@ public interface BlogService {
     List<Blog> getBlogs();
 
     Blog getBlog(int id);
+
+    void deleteById(int id);
+
+    void updateBlog(Blog blog);
 }

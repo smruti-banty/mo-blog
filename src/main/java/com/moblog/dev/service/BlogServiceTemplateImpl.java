@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class BlogServiceTemplateImpl implements BlogService{
+public class BlogServiceTemplateImpl implements BlogService {
     private final JdbcTemplate jdbcTemplate;
 
     @Value("${prefix}")
@@ -48,5 +48,21 @@ public class BlogServiceTemplateImpl implements BlogService{
                 resultSet.getString("description"));
 
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE FROM moblog WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public void updateBlog(Blog blog) {
+        var id = blog.getId();
+        var heading = blog.getHeading();
+        var description = blog.getDescription();
+
+        String sql = "UPDATE moblog SET heading = ?, description = ? WHERE id = ?";
+        jdbcTemplate.update(sql, heading, description, id);
     }
 }

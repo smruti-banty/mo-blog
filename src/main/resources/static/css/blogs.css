@@ -77,8 +77,7 @@ section {
     overflow: hidden;
 }
 
-.blog a {
-    display: inline-block;
+.blog div {
     grid-area: link;
 }
 
